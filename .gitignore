@@ -1,0 +1,13 @@
+# Réglages de l'éditeur (WebStorm / IntelliJ)
+.idea/
+
+# Réglages de VS Code
+.vscode/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Notes de travail privées (ne pas publier)
+MARCHE-A-SUIVRE.md

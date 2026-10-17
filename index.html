@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="fr-CH">
+<head>
+  <!-- ========================================================
+       MÉTADONNÉES
+       ======================================================== -->
+  <meta charset="utf-8">
+
+  <!-- Sécurité (CSP) : le navigateur ne charge que les ressources autorisées ici
+       (fichiers du site, polices Google, vidéos YouTube sans cookies). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; media-src 'self'; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFFFFF">
+  <meta name="description" content="Portfolio de Kingston Luthi : montage vidéo, graphisme et web. À la recherche d'une place d'apprentissage d'Interactive Media Designer CFC dans le canton de Vaud.">
+
+  <!-- Aperçu lors du partage du lien (WhatsApp, e-mail, LinkedIn…) -->
+  <meta property="og:title" content="Kingston Luthi · Futur Interactive Media Designer">
+  <meta property="og:description" content="Montage vidéo, graphisme et web. Je cherche une place d'apprentissage d'Interactive Media Designer CFC dans le canton de Vaud.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_CH">
+
+  <title>Kingston Luthi · Portfolio</title>
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+
+  <!-- Polices : Outfit (titres) et DM Sans (texte) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500..800&family=DM+Sans:wght@400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+
+<body>
+  <!-- Lien d'évitement pour la navigation au clavier -->
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <!-- ========================================================
+       EN-TÊTE
+       ======================================================== -->
+  <!-- Pas d'id="top" ici : l'en-tête étant collant, le lien « #top » ne défilerait pas.
+       Sans élément portant cet id, le navigateur remonte automatiquement en haut de la page. -->
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Kingston Luthi, retour en haut de la page">
+        kingston<span class="brand-dot" aria-hidden="true">.</span>
+      </a>
+
+      <!-- Navigation ordinateur -->
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a class="nav-link" href="#projets">Projets</a>
+        <a class="nav-link" href="#a-propos">À propos</a>
+        <a class="nav-link" href="#contact">Contact</a>
+        <a class="btn btn-dark btn-small" href="assets/documents/cv-kingston-luthi.pdf" download="cv-kingston-luthi.pdf">
+          Mon CV <span class="btn-icon btn-icon-down" aria-hidden="true">↓</span>
+        </a>
+      </nav>
+
+      <!-- Bouton du menu mobile -->
+      <button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-controls="mobile-nav" aria-expanded="false">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+      </button>
+    </div>
+
+    <!-- Navigation mobile -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navigation mobile" hidden>
+      <a href="#projets">Projets</a>
+      <a href="#a-propos">À propos</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-dark" href="assets/documents/cv-kingston-luthi.pdf" download="cv-kingston-luthi.pdf">
+        Télécharger mon CV <span class="btn-icon btn-icon-down" aria-hidden="true">↓</span>
+      </a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ========================================================
+         ACCUEIL : qui je suis et ce que je cherche
+         ======================================================== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <h1 class="hero-title" id="hero-title">
+            Salut, moi c'est Kingston<span class="wave" aria-hidden="true">👋</span>
+          </h1>
+
+          <!-- L'âge est mis à jour automatiquement par js/main.js (data-birth = date de naissance AAAA-MM-JJ) -->
+          <p class="hero-lead">
+            J'ai <span data-birth="2011-04-11">15</span>&nbsp;ans et je cherche une place d'apprentissage
+            d'<mark>Interactive Media Designer&nbsp;CFC</mark> dans le canton de Vaud,
+            <strong>dès&nbsp;août&nbsp;2027</strong>.
+          </p>
+          <p class="hero-sub">
+            Passionné par le montage vidéo, le graphisme et la création de sites web.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="#projets">
+              Voir mes projets <span class="btn-icon" aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn-light" href="assets/documents/cv-kingston-luthi.pdf" download="cv-kingston-luthi.pdf">
+              Télécharger mon CV <span class="btn-icon btn-icon-down" aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Photo entourée de ses trois centres d'intérêt -->
+        <div class="hero-visual">
+          <div class="photo-frame">
+            <img src="assets/images/kingston-portrait.png" alt="Portrait de Kingston Luthi" width="354" height="354">
+          </div>
+          <span class="sticker sticker-pink">Montage vidéo</span>
+          <span class="sticker sticker-blue">Graphisme</span>
+          <span class="sticker sticker-green">Web</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         PROJETS
+         Pour ajouter un projet : dupliquer un <article class="project-card">,
+         changer la couleur (card-yellow, card-pink, card-blue, card-green),
+         l'image, la vidéo (data-video) et les textes.
+         ======================================================== -->
+    <section class="section" id="projets" aria-labelledby="projets-title">
+      <div class="wrap">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title" id="projets-title">Mes projets</h2>
+          <p class="section-intro">Des montages vidéo que j'ai réalisés et le site sur lequel vous êtes.</p>
+        </header>
+
+        <!-- Groupe 1 : montages vidéo -->
+        <div class="group-head" data-reveal>
+          <h3 class="group-title"><span aria-hidden="true">🎬</span> Montages vidéo</h3>
+          <p class="group-hint">Cliquez sur une vidéo pour la regarder</p>
+        </div>
+
+        <div class="project-grid">
+          <!-- Projet 1 -->
+          <article class="project-card card-yellow" data-reveal>
+            <div class="project-media">
+              <img src="assets/images/fabriquer-le-temps.jpg" alt="" width="600" height="1066" loading="lazy">
+              <span class="play" aria-hidden="true"></span>
+              <span class="duration">1:16</span>
+            </div>
+            <h4 class="project-title">
+              <button class="project-button" type="button" aria-haspopup="dialog"
+                      data-video="assets/videos/fabriquer-le-temps.mp4"
+                      data-poster="assets/images/fabriquer-le-temps.jpg">
+                Fabriquer le temps
+              </button>
+            </h4>
+            <p class="project-text">Une vidéo face caméra avec décor, sous-titres animés et logo.</p>
+          </article>
+
+          <!-- Projet 2 -->
+          <article class="project-card card-blue" data-reveal>
+            <div class="project-media">
+              <img src="assets/images/chocolat-dubai.jpg" alt="" width="439" height="585" loading="lazy">
+              <span class="play" aria-hidden="true"></span>
+              <span class="duration">1:10</span>
+            </div>
+            <h4 class="project-title">
+              <button class="project-button" type="button" aria-haspopup="dialog"
+                      data-video="assets/videos/chocolat-dubai.mp4"
+                      data-poster="assets/images/chocolat-dubai.jpg">
+                Chocolat Dubaï
+              </button>
+            </h4>
+            <p class="project-text">La recette du célèbre chocolat expliquée avec des illustrations et des textes animés.</p>
+          </article>
+        </div>
+
+        <!-- Groupe 2 : site web (carte large, sans vidéo) -->
+        <div class="group-head" data-reveal>
+          <h3 class="group-title"><span aria-hidden="true">💻</span> Site web</h3>
+        </div>
+
+        <article class="project-card project-wide card-green" data-reveal>
+          <div class="wide-text">
+            <h4 class="project-title">Ce portfolio</h4>
+            <p class="project-text">
+              Mon premier site, créé avec l'aide d'une intelligence artificielle et mis en ligne par moi-même.
+              Ce projet m'a appris à&nbsp;:
+            </p>
+            <ul class="learned-list">
+              <li>Comprendre les bases du <strong>HTML</strong>, du <strong>CSS</strong> et du <strong>JavaScript</strong></li>
+              <li>Utiliser <strong>Git</strong> et <strong>GitHub</strong> comme outil de versioning</li>
+              <li>Publier un site avec <strong>GitHub Pages</strong></li>
+              <li>Acheter un nom de domaine chez <strong>Infomaniak</strong> et le relier au site</li>
+            </ul>
+          </div>
+
+          <!-- Capture du site dans une fausse fenêtre de navigateur -->
+          <div class="browser" aria-hidden="true">
+            <div class="browser-bar">
+              <span></span><span></span><span></span>
+              <p class="browser-url">kingstonluthi.ch</p>
+            </div>
+            <img src="assets/images/portfolio-apercu.jpg" alt="" width="1200" height="750" loading="lazy">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         À PROPOS : présentation, expériences, outils
+         ======================================================== -->
+    <section class="section section-soft" id="a-propos" aria-labelledby="a-propos-title">
+      <div class="wrap about-grid">
+
+        <!-- Colonne gauche : présentation -->
+        <div class="about-text" data-reveal>
+          <h2 class="section-title" id="a-propos-title">À propos de moi</h2>
+          <p>
+            Je viens de terminer l'école obligatoire en voie générale (VG&nbsp;2) à Cossonay.
+            Depuis quelques années, je monte mes propres vidéos&nbsp;: j'aime choisir la musique,
+            couper au bon moment et ajouter des textes qui donnent du rythme.
+          </p>
+          <p>
+            Mes stages ont été un vrai déclic&nbsp;: en découvrant le métier d'Interactive Media Designer,
+            j'ai su que c'était fait pour moi. Il réunit tout ce qui me passionne&nbsp;: la vidéo,
+            le graphisme et le web. J'ai hâte de l'apprendre et de participer à de vrais projets&nbsp;!
+          </p>
+          <p>
+            En ce moment, j'apprends <strong>Figma</strong> pour créer mes premières maquettes de sites.
+          </p>
+
+          <dl class="about-facts">
+            <div>
+              <dt>Langues</dt>
+              <dd>Français (langue maternelle), anglais (courant), allemand (niveau scolaire)</dd>
+            </div>
+            <div>
+              <dt>Loisirs</dt>
+              <dd>Piano, guitare, trampoline acrobatique, karting</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Colonne droite : expériences et outils -->
+        <div class="about-cards">
+          <div class="info-card" data-reveal>
+            <h3 class="card-title">Mes expériences</h3>
+            <ul class="experience-list">
+              <li>
+                <div>
+                  <strong>Nuée Digital</strong>
+                  <span>2 stages d'Interactive Media Designer</span>
+                </div>
+                <time>2025</time>
+              </li>
+              <li>
+                <div>
+                  <strong>Commune de Penthalaz</strong>
+                  <span>Job d'été : déménagement du collège du Cheminet</span>
+                </div>
+                <time>2025</time>
+              </li>
+              <li>
+                <div>
+                  <strong>QOQA</strong>
+                  <span>Stage Interactive Media Designer et informatique</span>
+                </div>
+                <time>2025</time>
+              </li>
+              <li>
+                <div>
+                  <strong>3SHEDS</strong>
+                  <span>Stage de médiamaticien</span>
+                </div>
+                <time>2024</time>
+              </li>
+            </ul>
+          </div>
+
+          <div class="info-card" data-reveal>
+            <h3 class="card-title">Mes outils</h3>
+            <ul class="tool-list">
+              <li>CapCut</li>
+              <li>Canva</li>
+              <li>FlipaClip</li>
+              <li>OBS Studio</li>
+              <li>VS Code</li>
+              <li>HTML / CSS</li>
+              <li>GitHub</li>
+              <li class="tool-learning">Figma <small>j'apprends</small></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CONTACT
+         ======================================================== -->
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="contact-card" data-reveal>
+          <h2 class="contact-title" id="contact-title">Envie de me rencontrer&nbsp;?</h2>
+          <p class="contact-text">
+            Je cherche une place d'apprentissage d'Interactive Media Designer CFC dès&nbsp;août&nbsp;2027.
+            Si besoin, je viens volontiers faire un stage dans votre entreprise pour vous montrer ma motivation.
+          </p>
+
+          <div class="contact-actions">
+            <a class="btn btn-dark" href="mailto:kingston.luthi@gmail.com?subject=Apprentissage%20Interactive%20Media%20Designer%20%E2%80%93%20Kingston%20Luthi">
+              Me contacter <span class="btn-icon" aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn-light" href="assets/documents/cv-kingston-luthi.pdf" download="cv-kingston-luthi.pdf">
+              Télécharger mon CV <span class="btn-icon btn-icon-down" aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <a class="contact-email" href="mailto:kingston.luthi@gmail.com">kingston.luthi@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================
+       PIED DE PAGE
+       ======================================================== -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>© <span id="year">2026</span> Kingston Luthi</p>
+      <a href="#top">Retour en haut <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       FENÊTRE VIDÉO (remplie par js/main.js)
+       ======================================================== -->
+  <dialog class="video-dialog" id="video-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-layout">
+      <div class="dialog-player" id="dialog-player"></div>
+
+      <div class="dialog-info">
+        <h2 class="dialog-title" id="dialog-title"></h2>
+        <p class="dialog-text" id="dialog-text"></p>
+
+        <div class="dialog-nav">
+          <button class="round-button" type="button" data-step="-1" aria-label="Projet précédent">←</button>
+          <span class="dialog-counter" id="dialog-counter" aria-live="polite"></span>
+          <button class="round-button" type="button" data-step="1" aria-label="Projet suivant">→</button>
+        </div>
+      </div>
+
+      <button class="round-button dialog-close" type="button" aria-label="Fermer la vidéo">✕</button>
+    </div>
+  </dialog>
+</body>
+</html>

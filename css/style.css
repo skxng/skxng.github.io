@@ -1,0 +1,1402 @@
+/* ==========================================================================
+   Portfolio de Kingston Luthi — feuille de style
+   --------------------------------------------------------------------------
+   1.  Variables (couleurs, typographie, espacements)
+   2.  Base
+   3.  Utilitaires
+   4.  Boutons
+   5.  En-tête et navigation
+   6.  Accueil
+   7.  Sections : structure commune
+   8.  Projets
+   9.  À propos
+   10. Contact
+   11. Pied de page
+   12. Fenêtre vidéo
+   13. Animations
+   14. Responsive (tablette, mobile)
+   15. Préférence « réduire les animations »
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. Variables
+   Modifier ces valeurs suffit pour changer l'apparence de tout le site.
+   ========================================================================== */
+
+:root {
+  /* Couleurs de base */
+  --white: #FFFFFF;
+  --soft: #F6F6F3;              /* fond de la section À propos */
+  --ink: #141414;               /* texte principal */
+  --ink-soft: #55555C;          /* texte secondaire */
+  --line: rgba(20, 20, 20, 0.1);
+
+  /* Couleurs joyeuses */
+  --yellow: #FFD84D;            /* couleur signature : surlignage, contact */
+  --pink: #FFB8CC;
+  --blue: #AFCBFF;
+  --green: #AEE6BC;
+
+  /* Versions pastel pour le fond des cartes projets */
+  --yellow-pale: #FFF0AE;
+  --pink-pale: #FFDDE7;
+  --blue-pale: #DCE7FF;
+  --green-pale: #D9F3DF;
+
+  /* Typographie */
+  --font-title: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Mise en page */
+  --max-width: 1200px;
+  --gutter: clamp(20px, 5vw, 56px);
+  --section-space: clamp(72px, 10vw, 128px);
+  --header-height: 72px;
+  --radius: 16px;
+
+  /* Animations */
+  --ease: cubic-bezier(0.22, 0.7, 0.2, 1);
+  --duration: 0.3s;
+}
+
+
+/* ==========================================================================
+   2. Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Les ancres ne passent pas sous l'en-tête fixe */
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+dl,
+dd {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Outfit a des espaces étroits : on les élargit un peu dans les titres */
+h1,
+h2,
+h3,
+h4 {
+  word-spacing: 0.06em;
+}
+
+strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+/* Contour de focus bien visible pour la navigation au clavier */
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+
+/* ==========================================================================
+   3. Utilitaires
+   ========================================================================== */
+
+/* Conteneur centré avec marges latérales */
+.wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Lien « Aller au contenu », visible uniquement au focus clavier */
+.skip-link {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: var(--white);
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform var(--duration) var(--ease);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   4. Boutons
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 14px 26px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration) var(--ease),
+    color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease),
+    transform var(--duration) var(--ease);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Bouton noir (action principale) */
+.btn-dark {
+  background: var(--ink);
+  color: var(--white);
+}
+
+/* Bouton blanc (action secondaire) */
+.btn-light {
+  background: var(--white);
+  color: var(--ink);
+}
+
+/* Au survol, les deux boutons passent au jaune */
+.btn-dark:hover,
+.btn-light:hover {
+  border-color: var(--ink);
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+/* Petit bouton de l'en-tête */
+.btn-small {
+  min-height: 42px;
+  padding: 8px 20px;
+  font-size: 15px;
+}
+
+/* La flèche se déplace légèrement au survol */
+.btn-icon {
+  display: inline-block;
+  transition: transform var(--duration) var(--ease);
+}
+
+.btn:hover .btn-icon {
+  transform: translateX(4px);
+}
+
+.btn:hover .btn-icon-down {
+  transform: translateY(3px);
+}
+
+/* Bouton carré aux coins arrondis (fenêtre vidéo) */
+.round-button {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--white);
+  font-size: 18px;
+  transition: background-color var(--duration) var(--ease), border-color var(--duration) var(--ease);
+}
+
+.round-button:hover {
+  border-color: var(--yellow);
+  background: var(--yellow);
+}
+
+
+/* ==========================================================================
+   5. En-tête et navigation
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.88);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition: border-color var(--duration) var(--ease);
+}
+
+/* Classe ajoutée par JavaScript dès que la page défile */
+.site-header.is-scrolled {
+  border-bottom-color: var(--line);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: var(--header-height);
+}
+
+/* Logo texte « kingston. » */
+.brand {
+  font-family: var(--font-title);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.brand-dot {
+  color: #F2B705;
+  transition: color var(--duration) var(--ease);
+}
+
+.brand:hover .brand-dot {
+  color: #FF7FA3;
+}
+
+/* Navigation ordinateur */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+/* Effet « surligneur » jaune au survol des liens */
+.nav-link {
+  padding: 2px;
+  background: linear-gradient(var(--yellow), var(--yellow)) left 85% / 0 40% no-repeat;
+  color: var(--ink-soft);
+  font-weight: 500;
+  transition: background-size var(--duration) var(--ease), color var(--duration) var(--ease);
+}
+
+.nav-link:hover {
+  background-size: 100% 40%;
+  color: var(--ink);
+}
+
+/* Bouton du menu mobile (masqué sur ordinateur) */
+.menu-toggle {
+  display: none;
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--white);
+}
+
+.menu-bar {
+  position: absolute;
+  left: 12px;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform var(--duration) var(--ease), top var(--duration) var(--ease);
+}
+
+.menu-bar:first-child {
+  top: 17px;
+}
+
+.menu-bar:last-child {
+  top: 24px;
+}
+
+/* Les deux barres forment une croix quand le menu est ouvert */
+.menu-toggle[aria-expanded='true'] .menu-bar:first-child {
+  top: 20px;
+  transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded='true'] .menu-bar:last-child {
+  top: 20px;
+  transform: rotate(-45deg);
+}
+
+/* Menu mobile déroulant */
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 8px var(--gutter) 28px;
+  border-bottom: 1px solid var(--line);
+  background: var(--white);
+}
+
+.mobile-nav[hidden] {
+  display: none;
+}
+
+.mobile-nav > a:not(.btn) {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.mobile-nav .btn {
+  margin-top: 24px;
+}
+
+
+/* ==========================================================================
+   6. Accueil
+   ========================================================================== */
+
+.hero {
+  padding-block: clamp(40px, 7vw, 96px) clamp(48px, 8vw, 104px);
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(32px, 6vw, 80px);
+}
+
+.hero-title {
+  font-family: var(--font-title);
+  font-size: clamp(42px, 6.2vw, 80px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/* Main qui salue au chargement de la page */
+.wave {
+  display: inline-block;
+  margin-left: 0.15em;
+  transform-origin: 70% 75%;
+  animation: wave 1.8s ease-in-out 0.4s 1;
+}
+
+@keyframes wave {
+  0%, 60%, 100% { transform: rotate(0deg); }
+  10%, 30%      { transform: rotate(16deg); }
+  20%, 40%      { transform: rotate(-8deg); }
+}
+
+.hero-lead {
+  max-width: 30ch;
+  margin-top: 28px;
+  font-size: clamp(20px, 2vw, 25px);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+/* Surlignage jaune façon « marqueur » */
+mark {
+  background: linear-gradient(transparent 55%, var(--yellow) 55%, var(--yellow) 92%, transparent 92%);
+  color: inherit;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.hero-sub {
+  max-width: 44ch;
+  margin-top: 16px;
+  color: var(--ink-soft);
+  font-size: 18px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+/* Photo + rond jaune + étiquettes */
+.hero-visual {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1;
+  justify-self: center;
+}
+
+/* Grand rond jaune derrière la photo */
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 6% 6%;
+  border-radius: 50%;
+  background: var(--yellow);
+}
+
+.photo-frame {
+  position: absolute;
+  inset: 9% 6% 0 12%;
+  overflow: hidden;
+  border: 6px solid var(--white);
+  border-radius: 50%;
+  background: var(--soft);
+  box-shadow: 0 24px 50px -24px rgba(20, 20, 20, 0.35);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Étiquettes autour de la photo */
+.sticker {
+  position: absolute;
+  z-index: 1;
+  padding: 10px 18px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  font-family: var(--font-title);
+  font-size: clamp(14px, 1.4vw, 17px);
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 3px 3px 0 var(--ink);
+  animation: float 6s ease-in-out infinite;
+}
+
+.sticker-pink {
+  top: 10%;
+  left: -4%;
+  background: var(--pink);
+  rotate: -8deg;
+}
+
+.sticker-blue {
+  top: 48%;
+  right: -6%;
+  background: var(--blue);
+  rotate: 6deg;
+  animation-delay: -2s;
+}
+
+.sticker-green {
+  bottom: 4%;
+  left: 6%;
+  background: var(--green);
+  rotate: -3deg;
+  animation-delay: -4s;
+}
+
+/* Léger flottement des étiquettes */
+@keyframes float {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -8px; }
+}
+
+
+/* ==========================================================================
+   7. Sections : structure commune
+   ========================================================================== */
+
+.section {
+  padding-block: var(--section-space);
+}
+
+.section-soft {
+  background: var(--soft);
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.section-title {
+  font-family: var(--font-title);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.section-intro {
+  margin-top: 14px;
+  color: var(--ink-soft);
+  font-size: 18px;
+}
+
+
+/* ==========================================================================
+   8. Projets
+   ========================================================================== */
+
+/* Sous-titre de groupe : « Montages vidéo », « Site web » */
+.group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 24px;
+  margin-bottom: 20px;
+}
+
+/* Espace au-dessus du second groupe */
+.project-grid + .group-head {
+  margin-top: clamp(48px, 6vw, 72px);
+}
+
+.group-title {
+  font-family: var(--font-title);
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.group-hint {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2.4vw, 28px);
+}
+
+/* Carte projet colorée */
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 14px 26px;
+  border-radius: var(--radius);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.card-yellow { background: var(--yellow-pale); }
+.card-pink   { background: var(--pink-pale); }
+.card-blue   { background: var(--blue-pale); }
+.card-green  { background: var(--green-pale); }
+
+/* Les cartes vidéo se soulèvent au survol (sans rotation, qui rendrait le texte flou) */
+.project-card:not(.project-wide):hover {
+  box-shadow: 0 22px 40px -24px rgba(20, 20, 20, 0.35);
+  transform: translateY(-6px);
+}
+
+/* Contour de focus sur toute la carte quand le bouton est sélectionné au clavier */
+.project-card:has(.project-button:focus-visible) {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+}
+
+/* Carte vidéo en ligne : miniature à gauche, titre et texte centrés à droite */
+.project-card:not(.project-wide) {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  grid-template-rows: 1fr auto auto 1fr;
+  column-gap: 24px;
+  padding: 14px;
+}
+
+.project-card:not(.project-wide) .project-media {
+  grid-row: 1 / 5;
+}
+
+.project-card:not(.project-wide) .project-title {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 0 8px 8px 0;
+}
+
+.project-card:not(.project-wide) .project-text {
+  grid-column: 2;
+  grid-row: 3;
+  margin: 0 8px 0 0;
+}
+
+/* Miniature de la vidéo : format vertical, comme les vidéos */
+.project-media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--white);
+}
+
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  transition: transform 0.6s var(--ease);
+}
+
+.project-card:hover .project-media img {
+  transform: scale(1.05);
+}
+
+/* Bouton lecture au centre : triangle dessiné en CSS */
+.play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 10px 30px rgba(20, 20, 20, 0.2);
+  translate: -50% -50%;
+  transition: background-color var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+
+.play::before {
+  content: '';
+  width: 18px;
+  height: 20px;
+  margin-left: 5px;
+  background: var(--ink);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  transition: background-color var(--duration) var(--ease);
+}
+
+.project-card:hover .play {
+  background: var(--ink);
+  transform: scale(1.1);
+}
+
+.project-card:hover .play::before {
+  background: var(--yellow);
+}
+
+/* Durée en bas à droite */
+.duration {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(20, 20, 20, 0.75);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.project-title {
+  margin: 20px 8px 6px;
+  font-family: var(--font-title);
+  font-size: clamp(21px, 2vw, 25px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.project-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+}
+
+/* Le bouton s'étend sur toute la carte (toute la carte est cliquable) */
+.project-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: var(--radius);
+}
+
+.project-button:focus-visible {
+  outline: none;
+}
+
+.project-text {
+  margin-inline: 8px;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ---------- Carte large : « Ce portfolio » ---------- */
+.project-wide {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 64px);
+  padding: clamp(24px, 4.5vw, 56px);
+}
+
+.project-wide .project-title {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 700;
+}
+
+.project-wide .project-text {
+  margin: 0;
+  font-size: 17px;
+}
+
+/* Liste « ce que j'ai appris » avec coches */
+.learned-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.learned-list li {
+  position: relative;
+  padding-left: 34px;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.learned-list li::before {
+  content: '✓';
+  position: absolute;
+  top: 1px;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Fausse fenêtre de navigateur contenant la capture du site */
+.browser {
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: 6px 6px 0 var(--ink);
+  rotate: 1.5deg;
+  transition: rotate 0.5s var(--ease);
+}
+
+.project-wide:hover .browser {
+  rotate: 0deg;
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding-inline: 14px;
+  border-bottom: 2px solid var(--ink);
+  background: var(--soft);
+}
+
+.browser-bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FF6159;
+}
+
+.browser-bar span:nth-child(2) { background: #FFBD2E; }
+.browser-bar span:nth-child(3) { background: #28C840; }
+
+.browser-url {
+  flex: 1;
+  max-width: 260px;
+  margin-left: 12px;
+  padding: 2px 14px;
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.browser img {
+  width: 100%;
+  height: auto;
+}
+
+
+/* ==========================================================================
+   9. À propos
+   ========================================================================== */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(40px, 6vw, 88px);
+}
+
+.about-text .section-title {
+  margin-bottom: 8px;
+}
+
+.about-text > p {
+  margin-top: 18px;
+  color: var(--ink-soft);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* Langues et loisirs */
+.about-facts {
+  margin-top: 32px;
+}
+
+.about-facts div {
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+
+.about-facts dt {
+  font-family: var(--font-title);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.about-facts dd {
+  color: var(--ink-soft);
+}
+
+.about-cards {
+  display: grid;
+  gap: 20px;
+}
+
+/* Cartes blanches « Mes expériences » et « Mes outils » */
+.info-card {
+  padding: clamp(22px, 3vw, 32px);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.card-title {
+  margin-bottom: 12px;
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.experience-list li {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+}
+
+.experience-list li + li {
+  border-top: 1px solid var(--line);
+}
+
+.experience-list strong {
+  display: block;
+  font-family: var(--font-title);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.experience-list span {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.experience-list time {
+  flex-shrink: 0;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--yellow-pale);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tool-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tool-list li {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--soft);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Outil en cours d'apprentissage : contour pointillé */
+.tool-list .tool-learning {
+  border: 2px dashed var(--ink-soft);
+  background: transparent;
+}
+
+.tool-learning small {
+  margin-left: 4px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+
+/* ==========================================================================
+   10. Contact
+   ========================================================================== */
+
+.contact-section {
+  padding-bottom: 32px;
+}
+
+/* Grand bloc jaune centré */
+.contact-card {
+  padding: clamp(40px, 7vw, 88px) clamp(24px, 5vw, 64px);
+  border-radius: 20px;
+  background: var(--yellow);
+  text-align: center;
+}
+
+.contact-title {
+  font-family: var(--font-title);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.contact-text {
+  max-width: 44ch;
+  margin: 18px auto 0;
+  font-size: clamp(17px, 1.6vw, 20px);
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* Sur fond jaune, le survol passe en blanc */
+.contact-card .btn:hover {
+  background: var(--white);
+}
+
+.contact-email {
+  display: inline-block;
+  margin-top: 28px;
+  font-family: var(--font-title);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  overflow-wrap: anywhere;
+}
+
+.contact-email:hover {
+  text-decoration-thickness: 3px;
+}
+
+
+/* ==========================================================================
+   11. Pied de page
+   ========================================================================== */
+
+.site-footer {
+  padding-block: 8px 32px;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.site-footer a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+
+/* ==========================================================================
+   12. Fenêtre vidéo
+   ========================================================================== */
+
+.video-dialog {
+  width: min(900px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.35);
+}
+
+/* Fond assombri et flouté derrière la fenêtre */
+.video-dialog::backdrop {
+  background: rgba(20, 20, 20, 0.6);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.video-dialog[open] {
+  animation: dialog-in 0.35s var(--ease);
+}
+
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+}
+
+/* Vidéo verticale à gauche, texte à droite */
+.dialog-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.dialog-player {
+  height: min(78dvh, 720px);
+  aspect-ratio: 9 / 16;
+  background: #000000;
+}
+
+.dialog-player video,
+.dialog-player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: contain;
+}
+
+.dialog-info {
+  display: flex;
+  flex-direction: column;
+  padding: 72px 36px 32px;
+}
+
+.dialog-title {
+  margin-bottom: 12px;
+  font-family: var(--font-title);
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.dialog-text {
+  color: var(--ink-soft);
+}
+
+/* Navigation précédent / suivant, en bas */
+.dialog-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 28px;
+}
+
+.dialog-counter {
+  min-width: 44px;
+  color: var(--ink-soft);
+  font-weight: 600;
+  text-align: center;
+}
+
+.dialog-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+}
+
+
+/* ==========================================================================
+   13. Animations d'apparition
+   Uniquement si JavaScript est actif (classe .js sur <html>).
+   La propriété « translate » est utilisée pour ne pas entrer en conflit
+   avec le « transform » des effets de survol.
+   ========================================================================== */
+
+.js [data-reveal] {
+  opacity: 0;
+  translate: 0 24px;
+  transition:
+    opacity 0.7s var(--ease),
+    translate 0.7s var(--ease),
+    transform 0.4s var(--ease),
+    box-shadow 0.4s var(--ease);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  translate: none;
+}
+
+/* Léger décalage entre les cartes d'une même rangée (apparition seulement) */
+.js .project-card[data-reveal]:nth-child(2) {
+  transition-delay: 0.1s, 0.1s, 0s, 0s;
+}
+
+.js .project-card[data-reveal]:nth-child(3) {
+  transition-delay: 0.2s, 0.2s, 0s, 0s;
+}
+
+
+/* ==========================================================================
+   14. Responsive
+   ========================================================================== */
+
+/* ---------- Tablette (≤ 900 px) ---------- */
+@media (max-width: 900px) {
+  .project-wide {
+    grid-template-columns: 1fr;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Fenêtre vidéo : vidéo au-dessus, texte en dessous */
+  .video-dialog {
+    width: min(480px, calc(100vw - 24px));
+  }
+
+  .dialog-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dialog-player {
+    width: 100%;
+    height: min(62dvh, 600px);
+    aspect-ratio: auto;
+  }
+
+  .dialog-info {
+    padding: 24px;
+  }
+
+  .dialog-close {
+    top: 12px;
+    right: 12px;
+  }
+}
+
+/* ---------- Petite tablette (≤ 800 px) : menu mobile, accueil sur une colonne ---------- */
+@media (max-width: 800px) {
+  .main-nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* La photo passe au-dessus du texte */
+  .hero-visual {
+    order: -1;
+    max-width: 300px;
+  }
+}
+
+/* ---------- Mobile (≤ 700 px) : cartes vidéo compactes, moins d'espace ---------- */
+@media (max-width: 700px) {
+  /* Espaces verticaux resserrés entre les sections */
+  :root {
+    --section-space: 44px;
+  }
+
+  .hero {
+    padding-bottom: 8px;
+  }
+
+  .hero + .section {
+    padding-top: 28px;
+  }
+
+  .section-head {
+    margin-bottom: 24px;
+  }
+
+  .project-grid + .group-head {
+    margin-top: 36px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* Carte vidéo : miniature plus petite, textes réduits */
+  .project-card:not(.project-wide) {
+    grid-template-columns: 112px minmax(0, 1fr);
+    column-gap: 16px;
+    padding: 12px;
+  }
+
+  .project-card:not(.project-wide) .project-title {
+    margin: 0 0 4px;
+    font-size: 19px;
+  }
+
+  .project-card:not(.project-wide) .project-text {
+    font-size: 15px;
+  }
+
+  /* Bouton lecture et durée plus petits sur la miniature réduite */
+  .play {
+    width: 40px;
+    height: 40px;
+  }
+
+  .play::before {
+    width: 12px;
+    height: 14px;
+    margin-left: 3px;
+  }
+
+  .duration {
+    right: 6px;
+    bottom: 6px;
+    padding: 2px 6px;
+    font-size: 11px;
+  }
+}
+
+/* ---------- Petit mobile (≤ 520 px) ---------- */
+@media (max-width: 520px) {
+  body {
+    font-size: 16px;
+  }
+
+  .hero-visual {
+    max-width: 260px;
+  }
+
+  /* Étiquettes plus petites pour ne pas cacher le visage */
+  .sticker {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .sticker-blue {
+    top: 64%;
+    right: -12%;
+  }
+
+  .sticker-green {
+    bottom: 0;
+    left: -2%;
+  }
+
+  .hero-actions .btn,
+  .contact-actions .btn {
+    width: 100%;
+  }
+
+  .project-wide {
+    padding: 22px 18px 26px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+
+/* ==========================================================================
+   15. Préférence « réduire les animations »
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    translate: none;
+  }
+}
