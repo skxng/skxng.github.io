@@ -828,12 +828,6 @@ mark {
   border-radius: 12px;
   background: var(--white);
   box-shadow: 6px 6px 0 var(--ink);
-  rotate: 1.5deg;
-  transition: rotate 0.5s var(--ease);
-}
-
-.project-wide:hover .browser {
-  rotate: 0deg;
 }
 
 .browser-bar {
